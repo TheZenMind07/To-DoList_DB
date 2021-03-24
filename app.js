@@ -13,7 +13,8 @@ app.set("view engine", "ejs");
 // let workItems = [];
 
 //Mongoose implementation
-mongoose.connect("mongodb://localhost:27017/todlistDB", {
+// mongoose.connect("mongodb://localhost:27017/todlistDB", {
+mongoose.connect("mongodb+srv://rk-mongo:Rajkp@cluster0.vbjj1.mongodb.net/todlistDB", {
     urlencoded: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
