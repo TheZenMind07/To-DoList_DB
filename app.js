@@ -13,9 +13,9 @@ app.set("view engine", "ejs");
 // let workItems = [];
 
 //Mongoose implementation
-// mongoose.connect("mongodb://localhost:27017/todlistDB", {
-mongoose.connect("mongodb+srv://rk-mongo:Rajkp@cluster0.vbjj1.mongodb.net/todlistDB", {
-    urlencoded: true,
+// mongoose.connect("mongodb://localhost:27017/todolistDB", {
+mongoose.connect("mongodb+srv://rk-mongo:Rajkp@cluster0.vbjj1.mongodb.net/todoList", {
+    // urlencoded: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -59,7 +59,7 @@ app.get("/", function (req, res) {
                     console.log("Default items are added");
                 }
             });
-            app.redirect("/");
+            res.redirect("/");
         } else {
             if (err) {
                 console.log(err);
@@ -90,6 +90,7 @@ app.get("/:title", function (req, res) {
                     items: defaultItems
                 });
                 list.save();
+                res.render("list", { listTitle: custTitle, listItems: foundList.items });
             } else {
                 res.render("list", { listTitle: custTitle, listItems: foundList.items });
             }
