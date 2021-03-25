@@ -15,7 +15,7 @@ app.set("view engine", "ejs");
 //Mongoose implementation
 // mongoose.connect("mongodb://localhost:27017/todolistDB", {
 mongoose.connect("mongodb+srv://rk-mongo:Rajkp@cluster0.vbjj1.mongodb.net/todoList", {
-    // urlencoded: true,
+    urlencoded: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -90,7 +90,7 @@ app.get("/:title", function (req, res) {
                     items: defaultItems
                 });
                 list.save();
-                res.render("list", { listTitle: custTitle, listItems: foundList.items });
+                res.redirect("/" + custTitle);
             } else {
                 res.render("list", { listTitle: custTitle, listItems: foundList.items });
             }
@@ -150,6 +150,11 @@ app.post("/delete", function (req, res) {
     }
 });
 
-app.listen(3000, function () {
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000;
+}
+
+app.listen(port, function () {
     console.log("Server 3000 is up and running");
 });
